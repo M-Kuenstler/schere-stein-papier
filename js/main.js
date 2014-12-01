@@ -1,13 +1,46 @@
-// Fancy jQuery Stuff!!
-
+/* 	------------------------------------------------------------------------
+ *	Schere-Stein- Papier v 1.2
+ *	Copyright Manuel Künstler
+ *	------------------------------------------------------------------------ */
 
 $(document).ready(function(){
+
+	/*	------------------------------------------------------------------------
+	 *	Global Variables
+	 *	------------------------------------------------------------------------ */
+	
 	var player = $('#player'),
 		playerWeapon,
 		cpu = $('#cpu'),
 		cpuWeapon,
 		playerSelect = false,
-		aClasses = ['scissors', 'rock', 'papers'];
+		aClasses = ['scissors', 'rock', 'papers'],
+		highscore = 0;
+
+	/*	------------------------------------------------------------------------
+	 *	Global Functions
+	 *	------------------------------------------------------------------------ */
+
+	 function message(text) {
+	 	$('.message h1').stop().text(text).fadeIn('fast').delay(500).fadeOut('slow');
+	};
+
+	function playerWin(){
+		message('Du hast gewonnen!');
+		highscore++;
+		$('#highscore').text(highscore);
+	};
+
+	function cpuWin(){
+		message('Du hast verloren!');
+		highscore = 0;				
+		$('#highscore').text(highscore);
+	};
+
+
+	/*	------------------------------------------------------------------------
+	 *	Core Functions
+	 *	------------------------------------------------------------------------ */
 
 	// player select
 	$('.controlls button').click(function(){
@@ -25,44 +58,47 @@ $(document).ready(function(){
 			var random = Math.round(Math.random()*2),
 				playerWeapon = player.attr('class');
 				cpuWeapon = aClasses[random];
-				console.log(playerWeapon, cpuWeapon);
 
 			cpu.removeAttr( "class" ).addClass(cpuWeapon);
 
+
 			// Untentschieden
 			if (playerWeapon == cpuWeapon) {
-				alert('Unentschieden');
+				message('Unentschieden');
 			} 
 
 			// Scissors - Papers
 			else if(playerWeapon == 'scissors' && cpuWeapon == 'papers') {
-				alert('Spieler gewinnt');
+				playerWin();
 			}
 
 			// Scissors - Rock
 			else if(playerWeapon == 'scissors' && cpuWeapon == 'rock') {
-				alert('Computer gewinnt');
+				cpuWin();
 			}
 
 			// Papers - Rock
 			else if(playerWeapon == 'papers' && cpuWeapon == 'rock') {
-				alert('Spieler gewinnt');
+				playerWin();
 			}
 
 			// Papers - Scissors
 			else if(playerWeapon == 'papers' && cpuWeapon == 'scissors') {
-				alert('Computer gewinnt');
+				cpuWin();
 			}
 
 			// Rock - Scissors
 			else if(playerWeapon == 'rock' && cpuWeapon == 'scissors') {
-				alert('Spieler gewinnt');
+				playerWin();
 			}
 
 			// Rock - Papers
 			else if(playerWeapon == 'rock' && cpuWeapon == 'papers') {
-				alert('Computer gewinnt');
+				cpuWin();
 			}
+
+			// Log
+			$('.log-list').prepend('<li> Spieler: ' +playerWeapon+' - CPU: ' +cpuWeapon+'</li>');
 		}
 		else{
 			alert('Please choose your Weapon')
