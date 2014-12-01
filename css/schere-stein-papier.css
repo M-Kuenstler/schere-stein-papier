@@ -178,3 +178,26 @@
 		top: 2px;
 		box-shadow: 0 3px 7px rgba(0,0,0,0.5);
 	}
+
+	/* Messages */	
+	.message{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -250px;
+		margin-top: -175px;
+		z-index: 3;
+		width: 500px;
+		height: 350px;
+	}
+
+	/* Log */
+	
+	#log{
+		margin-top: 50px;
+	}
+	.log-list{
+		list-style: none;
+		height: 150px;
+		overflow: hidden;
+	}
