@@ -16,6 +16,7 @@
 <body>
 <h1>Schere | Stein | Papier</h1>
 <div class="wrapper">
+	<div class="message"> <h1></h1> </div>
 	<div class="playboard">
 		<div id="player" class=""></div>
 		<div id="cpu" class=""></div>
@@ -26,6 +27,11 @@
 		<button id="rock"> Stein</button>
 		<button id="papers"> Papier</button>
 	</div>	
+	<div id="log">
+		<div class="">Gewinne in Folge: <span id="highscore">0</span></div>
+		<ul class="log-list">
+		</ul>
+	</div>
 </div><!--/wrapper-->
 <!-- Scripts -->
 <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
